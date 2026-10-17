@@ -8,7 +8,8 @@ const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 
 const app = express();
-const PORT = 3000;
+// Render ke liye PORT set karna zaroori hai
+const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors());
@@ -137,15 +138,15 @@ app.delete('/api/bookings/:id', (req, res) => {
 });
 
 // ============================================
-// START SERVER
+// START SERVER (0.0.0.0 for Render)
 // ============================================
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
     console.log('');
     console.log('╔═══════════════════════════════════════╗');
     console.log('║  🍽️  SPICE GARDEN BACKEND SERVER      ║');
     console.log('╚═══════════════════════════════════════╝');
     console.log('');
-    console.log(`🚀 Server running: http://localhost:${PORT}`);
+    console.log(`🚀 Server running on port ${PORT}`);
     console.log(`📊 Database: ${dbPath}`);
     console.log('');
     console.log('Press Ctrl+C to stop');
